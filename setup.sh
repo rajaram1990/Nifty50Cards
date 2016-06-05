@@ -7,3 +7,5 @@ cd redis-3.2.0
 make
 sudo cp src/redis-server /usr/local/bin/
 sudo cp src/redis-cli /usr/local/bin/
+redis-server 2>&1 > ~/redis_logs
+python setup.py
