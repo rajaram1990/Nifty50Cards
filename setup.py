@@ -45,6 +45,7 @@ def get_cnx_100_scrips():
         raise Exception('Error fetching scrip from NseIndia')
     content = resp.text
     lines = content.split('\n') # Did not use a csvreader since this is an one off script
+    lines = lines[1:]
     for line in lines:
         print line
         line_parts = line.split(',')
