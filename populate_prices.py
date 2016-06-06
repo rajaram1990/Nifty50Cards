@@ -23,7 +23,12 @@ class GetScrips:
 
 class NSECards:
     exposed = True
-    def GET(self, order=None):
+    def GET(self, filter=None):
+        """"
+            Sort can be on of
+            'tm', 'tg', 'tl'
+            top movers, top gainers and top losers
+        """
         scrip_data = {}
         scrips = REDIS_OBJ.get('scrips').split(',')
         scrip_data['scrips'] = scrips
@@ -33,6 +38,31 @@ class NSECards:
                                  'chg' : REDIS_OBJ.get('%s:chg'%(scrip)),
                                  'pc_chg' : REDIS_OBJ.get('%s:pc_chg'%(scrip))
                                 }
+        if filter:
+            change_scrip_map = {} #list of scrips with a particular % change
+            for scrip in scrips:
+                pc_change = scrip_data[scrip]['pc_chg']
+                if filter == 'tg':
+                    if pc_change.startswith('-'):
+                        continue
+                if filter == 'tl':
+                    if not pc_change.startswith('-'):
+                        continue
+                if pc_change.startswith('+') or pc_change.startswith('-'):
+                    pc_change = float(pc_change[1:]) # May have conversion issues, but doesn't concern us
+                else:
+                    pc_change = float(pc_change)
+                if change_scrip_map.get(pc_change):
+                    change_scrip_map[pc_change].append(scrip)
+                else:
+                    change_scrip_map[pc_change] = [scrip]
+            sorted_pcs = change_scrip_map.keys()
+            sorted_pcs.sort(reverse=True)
+            print sorted_pcs
+            ordered_scrips = []
+            for pc in sorted_pcs:
+                ordered_scrips.extend(change_scrip_map[pc])
+            scrip_data['scrips'] = ordered_scrips
         return json.dumps(scrip_data)
     def POST(self, order=None):
         update_prices() #calling a post to the same enpoint also syncs the new prices
