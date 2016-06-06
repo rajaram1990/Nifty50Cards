@@ -28,7 +28,65 @@
                    //console.log(cards_html);
                    document.getElementById("refresh_section").innerHTML = cards_html;
                 });
+               $("#top_gainers").removeClass('active');
+               $("#all_scrips").addClass('active');
+               $("#top_losers").removeClass('active');
+               $("#top_movers").removeClass('active');
             });
+
+            $("#top_gainers").click( function() {
+               $.ajax({
+                   type : 'GET',
+                   url : '/api/cards',
+                   data : {'filter':'tg'}
+                })
+               .done( function(data, status) {
+                   cards_html = generate_cards(data);
+                   console.log(cards_html);
+                   document.getElementById("refresh_section").innerHTML = cards_html;
+                });
+               $("#top_gainers").addClass('active');
+               $("#all_scrips").removeClass('active');
+               $("#top_losers").removeClass('active');
+               $("#top_movers").removeClass('active');
+            });
+
+            $("#top_losers").click( function() {
+               $.ajax({
+                   type : 'GET',
+                   url : '/api/cards',
+                   data : {'filter':'tl'}
+                })
+               .done( function(data, status) {
+                   cards_html = generate_cards(data);
+                   console.log(cards_html);
+                   document.getElementById("refresh_section").innerHTML = cards_html;
+                });
+               $("#top_gainers").removeClass('active');
+               $("#all_scrips").removeClass('active');
+               $("#top_losers").addClass('active');
+               $("#top_movers").removeClass('active');
+            });
+
+
+            $("#top_movers").click( function() {
+               $.ajax({
+                   type : 'GET',
+                   url : '/api/cards',
+                   data : {'filter':'tm'}
+                })
+               .done( function(data, status) {
+                   cards_html = generate_cards(data);
+                   console.log(cards_html);
+                   document.getElementById("refresh_section").innerHTML = cards_html;
+                });
+               $("#top_gainers").removeClass('active');
+               $("#all_scrips").removeClass('active');
+               $("#top_losers").removeClass('active');
+               $("#top_movers").addClass('active');
+            });
+
+
             $('#refresh_button').click( function() {
                 $.ajax({
                    type : 'POST',
