@@ -4,37 +4,22 @@ import GetNSEStockPrice.get_stock as get_stock
 from cherrypy.process.plugins import Monitor
 import datetime
 import simplejson as json
+from collections import OrderedDict
 
-songs = {
-    '1': {
-        'title': 'Lumberjack Song',
-        'artist': 'Canadian Guard Choir'
-    },
-
-    '2': {
-        'title': 'Always Look On the Bright Side of Life',
-        'artist': 'Eric Idle'
-    },
-
-    '3': {
-        'title': 'Spam Spam Spam',
-        'artist': 'Monty Python'
-    }
-}
 REDIS_OBJ = redis.Redis(host='localhost', port=6379, db=0)
 SCRIPS = REDIS_OBJ.get('scrips').split(',')
 
 class HelloWorld(object):
     @cherrypy.expose
     def index(self):
-        return "Hello world!"
+        return open('index.html')
 
 class NSECards:
 
     exposed = True
 
     def GET(self, id=None):
-        scrip_data = {}
+        scrip_data = OrderedDict()
         scrips = REDIS_OBJ.get('scrips').split(',')
         for scrip in scrips:
             scrip_data[scrip] = {'company_name' : REDIS_OBJ.get('%s:name'%(scrip)),
