@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/118a954687.js"></script>    
+    <script src="/static/js/generate_cards.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+        cards_html = null;
+        $(document).ready(function() {
+            $(function(){
+                $("#all_scrips").trigger("click");
+            });
+            $("#all_scrips").click( function() {
+               $.ajax({
+                   type : 'GET',
+                   url : '/api/cards',
+                   data : {}
+                })
+               .done( function(data, status) {
+                   cards_html = generate_cards(data);
+                   //console.log(cards_html);
+                   document.getElementById("refresh_section").innerHTML = cards_html;
+                });
+            });
+            $('#refresh_button').click( function() {
+                $.ajax({
+                   type : 'POST',
+                   url : '/api/cards',
+                   data : {}
+                })
+               .done( function(data, status) {
+                   $("#all_scrips").trigger("click");
+                });
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid" id="container">
+        <ul class="nav nav-pills bg-faded">
+          <li class="nav-item">
+            <a id = "all_scrips" class="nav-link active" href="#">All Scrips</a>
+          </li>
+          <li class="nav-item">
+            <a id = "top_gainers" class="nav-link" href="#">Top Gainers</a>
+          </li>
+          <li class="nav-item">
+            <a id = "top_losers" class="nav-link" href="#">Top Losers</a>
+          </li>
+          <li class="nav-item">
+            <a id = "top_movers" class="nav-link" href="#">Top Movers</a>
+          </li>
+          <li class="nav-item btn btn-secondary btn-lg active btn-sm" id="refresh_button" style="margin:5px" >
+            <b>⟳ Sync</b>
+          </li>            
+        
+        </ul>
+        <div id = "refresh_section">
+        <div class = "row" style="padding:10px">
+        <div class="col-sm-6">      
+            <h1 style="text-align : center">Nifty 50 stocks</h1>
+            <div class="col-sm-6">        
+              <div class="card card-block" style="background-color : #f1f1f1; border-color : #f1f1f1; text-align : center;">
+                <h4 class="card-title" style="text-align:center;">ACC</h4>                
+                    <h3>1451.35</h3>
+              </div>        
+            </div>  
+            <div class="col-sm-6">
+              <div class="card card-block" style="background-color : #f1f1f1; border-color : #f1f1f1; text-align : center;">
+                <h4 class="card-title" style="text-align:center;">ADANIPORTS</h4>                
+                    <table width = 50% align="center">
+                        <tr align = "center">
+                            <td><h3>202.35</h3></td>
+                            <td><font color="green"><i class="fa fa-chevron-up" style="{text-color:green}"aria-hidden="true"></i>&nbsp;2.25</font></td>
+                        </tr>
+                  </table>
+              </div>        
+            </div> 
+            </div>
+            
+                
+            </div>
+            
+            <div class = "row" style="padding:10px">
+            <div class="col-sm-6">         
+            <div class="col-sm-6">
+              <div class="card card-block" style="background-color : #f1f1f1; border-color : #f1f1f1; text-align : center;">
+                <h4 class="card-title" style="text-align:center;">AMBUJACEM</h4>                
+                    <h3>229.45</h3>
+              </div>        
+            </div>  
+            <div class="col-sm-6">
+              <div class="card card-block" style="background-color : #f1f1f1; border-color : #f1f1f1; text-align : center;">
+                <h4 class="card-title" style="text-align:center;">ASIANPAINT</h4>                
+                  <table width = 50% align="center">
+                        <tr align = "center">
+                            <td><h3>1202.35</h3></td>
+                            <td><font color="green"><i class="fa fa-chevron-up" style="{text-color:green}"aria-hidden="true"></i>&nbsp;2.25</font></td>
+                        </tr>
+                  </table>                          
+              </div>        
+            </div> 
+            </div>
+        </div>
+    </div> <!--refresh sectino -->
+    </div>
+
+    <!-- jQuery first, then Bootstrap JS. -->    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+  </body>
+</html>
