@@ -94,9 +94,34 @@
                    data : {}
                 })
                .done( function(data, status) {
-                   $("#all_scrips").trigger("click");
-                });
+                if ($('#top_movers').attr('class').search('active') > 0) {
+                    $("#top_movers").trigger("click");
+                }
+                else if ($('#top_losers').attr('class').search('active') > 0) {
+                    $("#top_losers").trigger("click");
+                }
+                else if ($('#all_scrips').attr('class').search('active') > 0) {
+                    $("#all_scrips").trigger("click");
+                }
+                else if ($('#top_gainers').attr('class').search('active') > 0) {
+                    $("#top_gainers").trigger("click");
+                }
             });
+
+            setInterval(function () {
+                if ($('#top_movers').attr('class').search('active') > 0) {
+                    $("#top_movers").trigger("click");
+                }
+                else if ($('#top_losers').attr('class').search('active') > 0) {
+                    $("#top_losers").trigger("click");
+                }
+                else if ($('#all_scrips').attr('class').search('active') > 0) {
+                    $("#all_scrips").trigger("click");
+                }
+                else if ($('#top_gainers').attr('class').search('active') > 0) {
+                    $("#top_gainers").trigger("click");
+                }
+            },3000);
         });
     </script>
   </head>
