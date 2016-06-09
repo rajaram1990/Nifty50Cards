@@ -110,6 +110,6 @@ if __name__ == '__main__':
              'tools.response_headers.headers': [('Content-Type', 'text/plain')],
             }
         })
-
+    update_prices()
     cherrypy.engine.start()
     cherrypy.engine.block()
