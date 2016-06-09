@@ -1,5 +1,7 @@
+sudo apt-get install -y python-pip python-dateutil
 sudo pip install --upgrade pip
 sudo pip install GetNSEStockPrices
+sudo pip install simplejson
 sudo pip install cherrypy
 sudo pip install redis
 wget http://download.redis.io/releases/redis-3.2.0.tar.gz

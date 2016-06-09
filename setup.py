@@ -6,6 +6,7 @@
 import sys
 import requests
 import redis
+import populate_prices
 companies = []
 sectors = []
 try:
@@ -71,3 +72,4 @@ def get_cnx_100_scrips():
 
 if __name__ == '__main__':
     get_cnx_100_scrips()
+    populate_prices.update_prices()
