@@ -1,5 +1,5 @@
 #Nifty50Cards
-Shows up stock prices of CNX 100 scrips of NSE as cards, letting one sort the cards based on parameters such as top gainers, top losers and top movers. Uses Cherrypy framework and a redis instance as backend
+Shows up stock prices of CNX 50 scrips of NSE as cards, letting one sort the cards based on parameters such as top gainers, top losers and top movers. Uses Cherrypy framework and a redis instance as backend
 
 - Rajaram, Jun 2016
 - License : GPL v2
