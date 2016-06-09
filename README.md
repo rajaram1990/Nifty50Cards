@@ -6,12 +6,12 @@ Shows up stock prices of CNX 100 scrips of NSE as cards, letting one sort the ca
 
 ## Installation
 
-1. Clone the repository and navigate to the root of the repo
+* Clone the repository and navigate to the root of the repo
 ```bash
     git clone https://github.com/rajaram1990/Nifty50Cards.git
     cd Nifty50Cards
 ```
-2. Set it up with the one click install script
+* Set it up with the one click install script
 
 ### On Ubuntu / Debian based systems:
 or anything that uses apt-get as package manager
@@ -25,7 +25,7 @@ or anything that uses yum as package manager
 ```bash
     sudo sh setup_rhel.sh
 ```
-3. Start the cherrypy server to start serving requests
+* Start the cherrypy server to start serving requests
 ```bash
     python server.py
 ```
