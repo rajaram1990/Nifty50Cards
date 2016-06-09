@@ -12,6 +12,7 @@ Shows up stock prices of CNX 100 scrips of NSE as cards, letting one sort the ca
     cd Nifty50Cards
 ```
 2. Set it up with the one click install script
+
 ### On Ubuntu / Debian based systems:
 or anything that uses apt-get as package manager
 ```bash
