@@ -9,7 +9,7 @@ import redis
 companies = []
 sectors = []
 try:
-    redis_obj = redis.Redis(host='localhost', port=6379, db=0, password=None)
+    redis_obj = redis.Redis(host='10.193.124.239', port=6379, db=0, password=None)
 except Exception, e:
     print >> sys.stderr, """Please ensure redis is running on localhost on 6379.
                          If not change config accordingly"""
