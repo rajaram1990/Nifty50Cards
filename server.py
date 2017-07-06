@@ -7,7 +7,7 @@ import datetime
 import simplejson as json
 from collections import OrderedDict
 
-REDIS_OBJ = redis.Redis(host='localhost', port=6379, db=0)
+REDIS_OBJ = redis.Redis(host='10.193.124.239', port=6379, db=0)
 SCRIPS = REDIS_OBJ.get('scrips').split(',')
 
 class HelloWorld(object):
