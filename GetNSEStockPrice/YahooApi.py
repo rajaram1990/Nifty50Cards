@@ -8,7 +8,7 @@
 import sys
 import json
 from datetime import datetime
-from dateutil import tz
+#from dateutil import tz
 import requests
 from ApiBase import ApiBase
 class YahooApi(ApiBase):
@@ -36,19 +36,6 @@ class YahooApi(ApiBase):
             raise Exception('YAHOO API ERROR')
         return resp
 
-    def get_time(self, timezone_string, utctime):
-        """
-            Gets timestamp of the given Timezone
-            Input : tz : Timezone to be converted to
-                    utctime : Time in UTC as String of format
-                              2016-05-30T09:59:59+0000
-        """
-        from_zone = tz.gettz('UTC')
-        to_zone = tz.gettz(timezone_string)
-        tz_time = datetime.strptime(utctime, '%Y-%m-%dT%H:%M:%S+0000')
-        tz_time = tz_time.replace(tzinfo=from_zone)
-        return tz_time.astimezone(to_zone)
-
     def process_response(self, text_responses):
         """
             See base class for documentation. Contains Yahoo specific implementation
@@ -64,7 +51,7 @@ class YahooApi(ApiBase):
                 volume = resource['resource']['fields']['volume']
                 scrip = resource['resource']['fields']['symbol'][:-3]
                 timestamp_string = resource['resource']['fields']['utctime']
-                timestamp = self.get_time('Asia/Kolkata', timestamp_string)
+                timestamp = None
                 temp_stock_dict = {'price':price,
                                    'volume':volume,
                                    'timestamp':timestamp}
